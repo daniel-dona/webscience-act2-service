@@ -14,10 +14,11 @@ import TermSearch
 import TaxonomySearch
 import TermExpand
 
+SPARQL_ENDPOINT = "https://query.wikidata.org/bigdata/namespace/wdq/sparql"
 
 class GetResults(Resource):
 
-	def get(self):
+	def post(self):
 		
 		result = {}
 		
@@ -26,10 +27,12 @@ class GetResults(Resource):
 
 		data = parser.parse_args()
 		
-		if data["terms"] is not None:
+		print(data)
+		
+		if data["terms"] is not None and data["terms"] != "":
 		
 				
-			terms = TermSearch.TermSearch(sparql_endpoint=SPARQL_ENDPOINT).find_terms_in_kg(data["terms"])
+			terms = TermSearch.TermSearch(sparql_endpoint=SPARQL_ENDPOINT).find_terms_in_kg(data["terms"].split("\n"))
 
 			taxonomy_classes = TaxonomySearch.TaxonomySearch(sparql_endpoint=SPARQL_ENDPOINT).find_taxonomy_in_kg(terms)
 			
@@ -38,6 +41,13 @@ class GetResults(Resource):
 			result["found_terms"] = terms
 			
 			result["found_taxonomy"] = taxonomy_classes
+			
+			for term in new_terms.copy():
+				
+				if term["termLabel"] in data["terms"].split("\n"):
+					
+					new_terms.remove(term)
+			
 			
 			result["new_terms"] = new_terms
 			
