@@ -1,0 +1,15 @@
+version: '3.1'
+
+services:
+
+  ws-service-backend:
+    build: ./backend
+    restart: always
+    ports:
+      - 8081:8081
+
+  ws-service-frontend:
+    build: ./frontend
+    restart: always
+    ports:
+      - 8080:8080
