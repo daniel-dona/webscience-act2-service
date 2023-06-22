@@ -75,7 +75,7 @@ function Interface() {
 		
 		let data = {"terms": terms}
 		
-		let results = await request("http://localhost:8081/results", "POST", data);
+		let results = await request("/results", "POST", data);
 		
 		console.log(results);
 		
