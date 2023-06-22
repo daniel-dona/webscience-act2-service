@@ -25,6 +25,23 @@ class TermExpand:
 		classlist = [f"(<{c['class']}>)" for c in class_list]
 
 		results = []
+		
+		if len(classlist) == 0:
+			
+			return []
+		
+		
+		if len(classlist) > 0 and len(classlist) < 2:
+			
+			min_class = 0
+			
+		elif len(classlist) >= 2 and len(classlist) < 5:
+			
+			min_class = 1
+			
+		else:
+			
+			min_class = 2
 	
 		query = '''
 		
@@ -52,7 +69,7 @@ class TermExpand:
 				  }
 
 				  GROUP BY (?item)
-				  HAVING (?count > 2)
+				  HAVING (?count > ''' + str(min_class) + ''')
 				  ORDER BY DESC (?count)
 				  LIMIT 20
 				
@@ -63,6 +80,8 @@ class TermExpand:
 		}
 
 		'''
+		
+		print(query)
 
 		self.sparql.setQuery(query)
 

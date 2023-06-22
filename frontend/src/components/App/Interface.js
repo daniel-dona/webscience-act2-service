@@ -2,7 +2,7 @@ import axios from "axios";
 
 import React, { useState } from "react";
 
-import { Container, Panel, Input, IconButton, ButtonToolbar, Tag, TagGroup, Table} from "rsuite";
+import { Container, Panel, Input, IconButton, ButtonToolbar, Tag, TagGroup, Table, Dropdown} from "rsuite";
 
 const { Column, HeaderCell, Cell } = Table;
 
@@ -21,6 +21,19 @@ function Interface() {
 	const [taxonomy, setTaxonomy] = React.useState([]);
 	
 	const [newTerms, setNewTerms] = React.useState([]);
+	
+	const examples = [
+		"dog\nparrot\nrabbit\ndonkey",
+		"butane\npropane\nciclohexane",
+		"tulip\nrose\ndaisy",
+		"tolperisone\nvicodin\noxycodone"
+	]
+		
+		
+	
+	
+	
+	
 	
 	const request = async (endpoint, method, data) => {
 
@@ -41,6 +54,12 @@ function Interface() {
 		return result;
 		
 	};
+	
+	const onExample = (option) => {
+		
+		setTerms(examples[option]);
+		
+	}
 	
 	const onWrite = (text) => {
 		
@@ -91,10 +110,18 @@ function Interface() {
 			
 		
 			<Panel style={{"margin": "15px 0"}} header="Terminology input" bordered>
-				<Input as="textarea" rows={15} placeholder="Textarea" onChange={onWrite}/>
+				<Input as="textarea" rows={15} placeholder="Write a list of terms, one per line... or try one of the examples!" onChange={onWrite} value={terms}/>
 			</Panel>
 			<ButtonToolbar style={{"margin": "15px 0"}}>
 				<div style={{flexGrow:1}}></div>
+				
+				<Dropdown title="Examples">
+					<Dropdown.Item onClick={() => { onExample(0) }}>Domestic mammals</Dropdown.Item>
+					<Dropdown.Item onClick={() => { onExample(1) }}>Alkanes</Dropdown.Item>
+					<Dropdown.Item onClick={() => { onExample(2) }}>Flowers</Dropdown.Item>
+					<Dropdown.Item onClick={() => { onExample(3) }}>Drugs</Dropdown.Item>
+				</Dropdown>
+				
 				<IconButton onClick={onRun} appearance="primary" color="green" icon={<PlayIcon />} placement={"right"} loading={isLoading}>
 					Search for terms
 				</IconButton>

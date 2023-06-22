@@ -23,15 +23,19 @@ class TermSearch:
 	
 		query = '''
 		
-			SELECT ?q ?term WHERE {
+			SELECT ?q ?term 
+			
+			WHERE {
 				
 			  VALUES ?q { '''+term_query+''' }
 							  
-			  ?term (rdfs:label|skos:altLabel) ?q.
+			  ?term (rdfs:label) ?q.
 							  
 			  SERVICE wikibase:label { bd:serviceParam wikibase:language "en". }
-							  
+			  
 			}
+			
+			LIMIT 100
 			
 		'''
 		

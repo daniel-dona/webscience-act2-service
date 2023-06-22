@@ -27,12 +27,13 @@ class GetResults(Resource):
 
 		data = parser.parse_args()
 		
-		print(data)
-		
 		if data["terms"] is not None and data["terms"] != "":
 		
+			query_terms = [ t for t in data["terms"].split("\n") if len(t) > 2 ]
+			
+			print(query_terms)
 				
-			terms = TermSearch.TermSearch(sparql_endpoint=SPARQL_ENDPOINT).find_terms_in_kg(data["terms"].split("\n"))
+			terms = TermSearch.TermSearch(sparql_endpoint=SPARQL_ENDPOINT).find_terms_in_kg(query_terms)
 
 			taxonomy_classes = TaxonomySearch.TaxonomySearch(sparql_endpoint=SPARQL_ENDPOINT).find_taxonomy_in_kg(terms)
 			
@@ -44,7 +45,7 @@ class GetResults(Resource):
 			
 			for term in new_terms.copy():
 				
-				if term["termLabel"] in data["terms"].split("\n"):
+				if term["termLabel"] in query_terms:
 					
 					new_terms.remove(term)
 			

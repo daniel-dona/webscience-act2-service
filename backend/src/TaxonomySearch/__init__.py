@@ -51,7 +51,7 @@ class TaxonomySearch:
 					}
 						
 					GROUP BY ?item
-					HAVING (?count > 0)
+					HAVING (?count > 1)
 				
 				}
 			}
