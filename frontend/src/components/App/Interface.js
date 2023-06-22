@@ -99,6 +99,8 @@ function Interface() {
 			<h1> Simple Wikidata terminology expansion </h1>
 		
 			<h3> Web Sciente, MUIA, deliverable for lesson 2</h3>
+			
+			<h5> Daniel Doña Álvarez </h5>
 		
 			<Panel style={{"margin": "15px 0"}} bordered>
 				<p>
