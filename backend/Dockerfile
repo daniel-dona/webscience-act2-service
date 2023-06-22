@@ -1,5 +1,7 @@
 FROM ubuntu:22.04
 
+RUN dpkg --print-architecture
+
 RUN apt-get update
 RUN apt-get upgrade -y
 RUN echo 'debconf debconf/frontend select Noninteractive' | debconf-set-selections

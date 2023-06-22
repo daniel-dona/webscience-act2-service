@@ -4,6 +4,8 @@ services:
 
   ws-service-backend:
     build: ./backend
+    platform: linux/arm64
+#    platform: linux/amd64
     image: public.ecr.aws/p3f3a4s7/webscience-delivery-2:backend
     restart: always
     ports:
@@ -14,6 +16,8 @@ services:
 
   ws-service-frontend:
     build: ./frontend
+    platform: linux/arm64
+#    platform: linux/amd64
     image: public.ecr.aws/p3f3a4s7/webscience-delivery-2:frontend
     restart: always
     ports:

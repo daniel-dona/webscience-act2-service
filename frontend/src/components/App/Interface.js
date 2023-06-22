@@ -102,8 +102,13 @@ function Interface() {
 		
 			<Panel style={{"margin": "15px 0"}} bordered>
 				<p>
-					Terminology in the input field are processed to extract taxonomy information and that information is then used to seek for additional terminology that is related.
-					Results are higly dependent on the quality of Wikidata annotations for given terms. Only exact terms matches are used, not full text search is implemented.
+					Terminology in the input field is processed to extract taxonomy information, which is then used to seek additional related vocabulary. 
+					Results are highly dependent on the quality of Wikidata annotations for given terms. 
+					Only exact term matches are used; no full-text search is implemented.
+				</p>
+				<p>
+					Properties wdt:P31 and wdt:P279 are used to infer terminology connectivity, and more potential properties were identified (as wdt:P361 and wdt:P373),
+					but the SPARQL query interface is not performant enough to resolve more complex queries without timing out.
 				</p>
 			</Panel>
 		
