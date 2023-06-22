@@ -110,6 +110,9 @@ function Interface() {
 					Properties wdt:P31 and wdt:P279 are used to infer terminology connectivity, and more potential properties were identified (as wdt:P361 and wdt:P373),
 					but the SPARQL query interface is not performant enough to resolve more complex queries without timing out.
 				</p>
+				<p>
+					Code for this demo can be found here: <a href="https://github.com/daniel-dona/webscience-act2-service">https://github.com/daniel-dona/webscience-act2-service</a>
+				</p>
 			</Panel>
 		
 			
